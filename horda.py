@@ -1,9 +1,3 @@
-import sys
-import math
-import numpy as np
-import matplotlib.pyplot as plt
-from sympy import *
-
 a = 0.0;
 b = 3.0;
 e = 0.0001
