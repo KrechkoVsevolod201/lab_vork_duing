@@ -26,17 +26,13 @@ def secant(f, x0: float, eps: float=1e-7 ) -> float:
    x_prev = x0 + 2 * eps
    i = 0
    while abs(x - x_prev) >= eps and i < 1e3:
-      x -= f(x) / (f(x) - f(x_prev)) * (x - x_prev)
-      x_prev = x
+      x1 = x - f(x) / (f(x_prev) - f(x)) * (x_prev - x)
+      x_prev = x1
       i += 1
-   return x
+   return x1
 # --------------------------------
 
 
 x0 = int(input("x="))
-x = secant(f, x0)
-print(x)
-'''
-if __name__ == '__main__':
-    secant(x**3 - 3.9*x**2 + 4.4*x - 1.4, e)
-'''
+x1 = secant(f, x0)
+print(x1)
