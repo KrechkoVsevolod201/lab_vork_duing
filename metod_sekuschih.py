@@ -1,5 +1,4 @@
-a = 0.0;
-b = 3.0;
+import matplotlib.pyplot as plt
 e = 0.0001
 
 
@@ -19,14 +18,24 @@ def secant(f, x0: float, eps: float=1e-7 ) -> float:
    x = x0
    x_prev = x0 + 2 * eps
    i = 0
-   while abs(x - x_prev) >= eps and i < 1e3:
+   n=0
+   while abs(x - x_prev) >= eps and i < 1/e:
       x1 = x - f(x) / (f(x_prev) - f(x)) * (x_prev - x)
       x_prev = x1
       i += 1
-   return x1
+      n += 1
+   print("Найденный корень x =" + str(x1))
+   print("Невязка f(x) = " + str(f(x1)))
+   print("Кол-во итераций = " + str(n))
+   return (" ")
 # --------------------------------
 
 
-x0 = int(input("x="))
+a = int(input("Левая граница a="))
+#print('\n')
+b = int(input("Правая граница b="))
+#print('\n')
+x0 = int(input("Начальное приближение x="))
+#print('\n')
 x1 = secant(f, x0)
-print(x1)
+
