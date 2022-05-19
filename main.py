@@ -42,7 +42,7 @@ def f(x:float) -> float:
 # --------------------------------
 
 
-def secant(f, x0: float, eps: float=1e-7 ) -> float:
+def secant(f, a, b, x0: float, eps: float=1e-7 ) -> float:
    """
    solves f(x) = 0 by secant method with precision eps
    :param f: f
@@ -51,14 +51,19 @@ def secant(f, x0: float, eps: float=1e-7 ) -> float:
    :return: root of f(x) = 0
    """
    x = x0
-   x_prev = x0 + 2 * eps
+   x_prev = x0 - 2 * eps
    i = 0
    n=0
-   while abs(x - x_prev) >= eps and i < 1/e:
+   while abs(f(x_prev)) > eps:
       x1 = x - f(x) / (f(x_prev) - f(x)) * (x_prev - x)
       x_prev = x1
       i += 1
       n += 1
+      if x1 > b:
+         print("----------------Метод секущих----------------")
+         print("Введите новое начальное приближение")
+         x = int(input("Начальное приближение x0="))
+
    print("----------------Метод секущих----------------")
    print("Найденный корень x =" + str(x1))
    print("Невязка f(x) = " + str(f(x1)))
@@ -80,5 +85,5 @@ a = int(input("Левая граница a="))
 b = int(input("Правая граница b="))
 x0 = int(input("Начальное приближение x0="))
 x2 = bisection_method(x**3 - 3.9*x**2 + 4.4*x - 1.4, a, b, e, 10**(-3))
-x1 = secant(f, x0)
+x1 = secant(f, a, b, x0)
 

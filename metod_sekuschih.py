@@ -19,7 +19,7 @@ def secant(f, x0: float, eps: float=1e-7 ) -> float:
    x_prev = x0 + 2 * eps
    i = 0
    n=0
-   while abs(x - x_prev) >= eps and i < 1/e:
+   while abs(f(x_prev)) > eps:
       x1 = x - f(x) / (f(x_prev) - f(x)) * (x_prev - x)
       x_prev = x1
       i += 1
